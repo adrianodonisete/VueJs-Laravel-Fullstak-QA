@@ -11,6 +11,11 @@ use App\Http\Resources\TaskResource;
 
 class TaskController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Task::class);
+    }
+
     public function index()
     {
         return TaskResource::collection(auth()->user()->tasks()->get());
